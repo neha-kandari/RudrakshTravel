@@ -3,43 +3,43 @@ import { useState, useEffect } from 'react';
 const destinations = [
   {
     name: 'Singapore',
-    image: 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxTaW5nYXBvcmUlMjBNYXJpbmElMjBCYXl8ZW58MXx8fHwxNzgwMDc1NTMzfDA&ixlib=rb-4.1.0&q=80&w=1920',
+    image: '/optimized/img_aa394760.webp',
   },
   {
     name: 'Dubai',
-    image: 'https://images.unsplash.com/flagged/photo-1559717865-a99cac1c95d8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwyfHxEdWJhaSUyMEJ1cmolMjBLaGFsaWZhfGVufDF8fHx8MTc4MDA3NTUzM3ww&ixlib=rb-4.1.0&q=80&w=1920',
+    image: '/optimized/img_bbed0de0.webp',
   },
   {
     name: 'Europe',
-    image: 'https://images.unsplash.com/photo-1570097703229-b195d6dd291f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxQYXJpcyUyMEVpZmZlbCUyMFRvd2VyJTIwRXVyb3BlfGVufDF8fHx8MTc4MDA3NTUzM3ww&ixlib=rb-4.1.0&q=80&w=1920',
+    image: '/optimized/img_42cdb947.webp',
   },
   {
     name: 'Bali',
-    image: 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxCYWxpJTIwSW5kb25lc2lhJTIwdGVtcGxlfGVufDF8fHx8MTc4MDA3NTU0M3ww&ixlib=rb-4.1.0&q=80&w=1920',
+    image: '/optimized/img_7d88a975.webp',
   },
   {
     name: 'Thailand',
-    image: 'https://images.unsplash.com/photo-1563492065599-3520f775eeed?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxUaGFpbGFuZCUyMEJhbmdrb2slMjB0ZW1wbGV8ZW58MXx8fHwxNzgwMDc1NTQzfDA&ixlib=rb-4.1.0&q=80&w=1920',
+    image: '/optimized/img_3e516873.webp',
   },
   {
     name: 'Maldives',
-    image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxNYWxkaXZlcyUyMHJlc29ydCUyMHdhdGVyJTIwdmlsbGF8ZW58MXx8fHwxNzgwMDc1NTQ1fDA&ixlib=rb-4.1.0&q=80&w=1920',
+    image: '/optimized/img_dc677507.webp',
   },
   {
     name: 'Japan',
-    image: 'https://images.unsplash.com/photo-1565618754154-c8011e5df2a6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxKYXBhbiUyMFRva3lvJTIwTW91bnQlMjBGdWppfGVufDF8fHx8MTc4MDA3NTU1Mnww&ixlib=rb-4.1.0&q=80&w=1920',
+    image: '/optimized/img_4f56b04b.webp',
   },
   {
     name: 'Kashmir',
-    image: 'https://images.unsplash.com/photo-1715457573748-8e8a70b2c1be?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxLYXNobWlyJTIwSW5kaWElMjBEYWwlMjBMYWtlfGVufDF8fHx8MTc4MDA3NTU1M3ww&ixlib=rb-4.1.0&q=80&w=1920',
+    image: '/optimized/img_fc3f1d73.webp',
   },
   {
     name: 'Goa',
-    image: 'https://images.unsplash.com/photo-1652820330085-82a0c2b88d78?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxHb2ElMjBJbmRpYSUyMGJlYWNofGVufDF8fHx8MTc4MDA3NTU1M3ww&ixlib=rb-4.1.0&q=80&w=1920',
+    image: '/optimized/img_4be9b219.webp',
   },
   {
     name: 'Kerala',
-    image: 'https://images.unsplash.com/photo-1506461883276-594a12b11cf3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxLZXJhbGElMjBJbmRpYSUyMGJhY2t3YXRlcnN8ZW58MXx8fHwxNzgwMDc1NTU0fDA&ixlib=rb-4.1.0&q=80&w=1920',
+    image: '/optimized/img_3979d139.webp',
   },
 ];
 

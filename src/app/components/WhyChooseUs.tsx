@@ -74,7 +74,7 @@ export function WhyChooseUs() {
               }}
             >
               <img
-                src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0cmF2ZWwlMjBhZHZlbnR1cmUlMjBwZXJzb24lMjBiYWNrcGFja2VyfGVufDF8fHx8MTc4MDA3NjUyMnww&ixlib=rb-4.1.0&q=80&w=800"
+                src="/optimized/img_a7118768.webp"
                 alt="Travel adventure"
                 className="w-full h-full object-cover"
               />

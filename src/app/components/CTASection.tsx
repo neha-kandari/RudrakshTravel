@@ -12,7 +12,7 @@ export function CTASection() {
         >
           {/* Background image */}
           <img
-            src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1600"
+            src="/optimized/img_88d47b6f.webp"
             alt="Travel background"
             className="absolute inset-0 w-full h-full object-cover"
           />

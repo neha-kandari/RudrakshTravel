@@ -49,57 +49,85 @@ export function Navbar({ isDarkMode, setIsDarkMode }: NavbarProps) {
           className="grid items-center h-20 md:h-24"
           style={{ gridTemplateColumns: '1fr auto 1fr' }}
         >
-          {/* ── LEFT: Logo ── */}
-          <div className="flex items-center">
-            <Link to="/">
+          {/* ── LEFT Column ── */}
+          <div className="flex items-center justify-start">
+            {/* Logo (Desktop only) */}
+            <Link to="/" className="hidden md:flex">
               <img
                 src="/Rudraksh_Travels_Logo.png"
                 alt="Rudraksh Travels"
-                className="h-16 md:h-20 w-auto object-contain"
+                className="h-20 w-auto object-contain"
+              />
+            </Link>
+
+            {/* Theme Toggle (Mobile only, left-most) */}
+            <button
+              onClick={() => setIsDarkMode(!isDarkMode)}
+              className="md:hidden p-2 rounded-full transition-all duration-300 hover:scale-110"
+              style={{
+                background: 'rgba(236,158,44,0.12)',
+                border: '1px solid rgba(236,158,44,0.28)',
+              }}
+              aria-label="Toggle theme"
+            >
+              {isDarkMode
+                ? <Sun  className="w-4 h-4" style={{ color: '#EC9E2C' }} />
+                : <Moon className="w-4 h-4" style={{ color: '#7F3B2F' }} />}
+            </button>
+          </div>
+
+          {/* ── CENTER Column ── */}
+          <div className="flex items-center justify-center">
+            {/* Nav links (Desktop only) */}
+            <div className="hidden md:flex items-center gap-8">
+              {navLinks.map((link) => {
+                const linkStyles = {
+                  fontFamily: 'Inter, sans-serif',
+                  fontWeight: 500,
+                  fontSize: '0.9rem',
+                  letterSpacing: '0.01em',
+                  color: 'var(--color-foreground)',
+                  textDecoration: 'none',
+                };
+
+                return link.isRoute ? (
+                  <Link
+                    key={link.name}
+                    to={link.href}
+                    className="py-2 transition-all duration-300 hover:opacity-70"
+                    style={linkStyles}
+                  >
+                    {link.name}
+                  </Link>
+                ) : (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    className="py-2 transition-all duration-300 hover:opacity-70"
+                    style={linkStyles}
+                  >
+                    {link.name}
+                  </a>
+                );
+              })}
+            </div>
+
+            {/* Logo (Mobile only, centered) */}
+            <Link to="/" className="flex md:hidden">
+              <img
+                src="/Rudraksh_Travels_Logo.png"
+                alt="Rudraksh Travels"
+                className="h-16 w-auto object-contain"
               />
             </Link>
           </div>
 
-          {/* ── CENTER: Nav links ── */}
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => {
-              const linkStyles = {
-                fontFamily: 'Inter, sans-serif',
-                fontWeight: 500,
-                fontSize: '0.9rem',
-                letterSpacing: '0.01em',
-                color: 'var(--color-foreground)',
-                textDecoration: 'none',
-              };
-
-              return link.isRoute ? (
-                <Link
-                  key={link.name}
-                  to={link.href}
-                  className="py-2 transition-all duration-300 hover:opacity-70"
-                  style={linkStyles}
-                >
-                  {link.name}
-                </Link>
-              ) : (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="py-2 transition-all duration-300 hover:opacity-70"
-                  style={linkStyles}
-                >
-                  {link.name}
-                </a>
-              );
-            })}
-          </div>
-
-          {/* ── RIGHT: Toggle + CTA ── */}
+          {/* ── RIGHT Column ── */}
           <div className="flex items-center gap-3 justify-end">
-            {/* theme toggle */}
+            {/* Theme Toggle (Desktop only) */}
             <button
               onClick={() => setIsDarkMode(!isDarkMode)}
-              className="p-2 rounded-full transition-all duration-300 hover:scale-110"
+              className="hidden md:flex p-2 rounded-full transition-all duration-300 hover:scale-110"
               style={{
                 background: 'rgba(236,158,44,0.12)',
                 border: '1px solid rgba(236,158,44,0.28)',
@@ -133,7 +161,7 @@ export function Navbar({ isDarkMode, setIsDarkMode }: NavbarProps) {
             {/* mobile hamburger */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden absolute top-1/2 -translate-y-1/2 right-2 p-2 rounded-lg z-[60]"
+              className="md:hidden p-2 rounded-lg z-[60]"
               style={{ color: 'var(--color-foreground)' }}
               aria-label="Toggle menu"
             >

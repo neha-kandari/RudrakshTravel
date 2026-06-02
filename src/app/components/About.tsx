@@ -34,7 +34,7 @@ export function About() {
           <ScrollReveal direction="left" className="relative h-full">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl h-full">
               <img
-                src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=800"
+                src="/optimized/img_ce7cf354.webp"
                 alt="Travel Experience"
                 className="w-full h-full object-cover"
               />

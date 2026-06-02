@@ -33,7 +33,7 @@ export function Contact() {
             {/* Image card */}
             <div className="relative rounded-2xl overflow-hidden mb-6" style={{ height: '200px' }}>
               <img
-                src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=600"
+                src="/optimized/img_8f1677a2.webp"
                 alt="Contact us"
                 className="w-full h-full object-cover"
               />

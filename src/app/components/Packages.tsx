@@ -1,30 +1,30 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 
 const internationalPackages = [
-  { name: 'Singapore', duration: '4N/5D', image: 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxTaW5nYXBvcmUlMjBNYXJpbmElMjBCYXl8ZW58MXx8fHwxNzgwMDc1NTMzfDA&ixlib=rb-4.1.0&q=80&w=1080', description: 'Modern city with stunning architecture', tag: 'Popular' },
-  { name: 'Dubai', duration: '4N/5D', image: 'https://images.unsplash.com/flagged/photo-1559717865-a99cac1c95d8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwyfHxEdWJhaSUyMEJ1cmolMjBLaGFsaWZhfGVufDF8fHx8MTc4MDA3NTUzM3ww&ixlib=rb-4.1.0&q=80&w=1080', description: 'Luxury shopping and desert adventures', tag: 'Bestseller' },
-  { name: 'Europe', duration: '11N/12D', image: 'https://images.unsplash.com/photo-1570097703229-b195d6dd291f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxQYXJpcyUyMEVpZmZlbCUyMFRvd2VyJTIwRXVyb3BlfGVufDF8fHx8MTc4MDA3NTUzM3ww&ixlib=rb-4.1.0&q=80&w=1080', description: 'Explore historic cities and culture', tag: 'Premium' },
-  { name: 'Malaysia', duration: '4N/5D', image: 'https://images.unsplash.com/photo-1597148543182-830ef7bbb904?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxNYWxheXNpYSUyMFBldHJvbmFzJTIwVG93ZXJzfGVufDF8fHx8MTc4MDA3NTUzNHww&ixlib=rb-4.1.0&q=80&w=1080', description: 'Tropical paradise and vibrant cities', tag: null },
-  { name: 'Vietnam', duration: '5N/6D', image: 'https://images.unsplash.com/photo-1528127269322-539801943592?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxWaWV0bmFtJTIwSGFsb25nJTIwQmF5fGVufDF8fHx8MTc4MDA3NTUzNHww&ixlib=rb-4.1.0&q=80&w=1080', description: 'Rich culture and stunning landscapes', tag: null },
-  { name: 'Bali', duration: '6N/7D', image: 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxCYWxpJTIwSW5kb25lc2lhJTIwdGVtcGxlfGVufDF8fHx8MTc4MDA3NTU0M3ww&ixlib=rb-4.1.0&q=80&w=1080', description: 'Island paradise with beautiful beaches', tag: 'Popular' },
-  { name: 'Thailand', duration: '4N/5D', image: 'https://images.unsplash.com/photo-1563492065599-3520f775eeed?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxUaGFpbGFuZCUyMEJhbmdrb2slMjB0ZW1wbGV8ZW58MXx8fHwxNzgwMDc1NTQzfDA&ixlib=rb-4.1.0&q=80&w=1080', description: 'Temples, beaches, and delicious food', tag: null },
-  { name: 'New Zealand', duration: '6N/7D', image: 'https://images.unsplash.com/photo-1531804226530-70f8004aa44e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxOZXclMjBaZWFsYW5kJTIwbW91bnRhaW5zJTIwbGFuZHNjYXBlfGVufDF8fHx8MTc4MDA3NTU0NHww&ixlib=rb-4.1.0&q=80&w=1080', description: 'Breathtaking natural beauty', tag: 'Premium' },
-  { name: 'Nepal', duration: '4N/5D', image: 'https://images.unsplash.com/photo-1518002054494-3a6f94352e9d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxOZXBhbCUyMEhpbWFsYXlhcyUyMG1vdW50YWlufGVufDF8fHx8MTc4MDA3NTU0NHww&ixlib=rb-4.1.0&q=80&w=1080', description: 'Himalayan adventures and spirituality', tag: null },
-  { name: 'Maldives', duration: '3N/4D', image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxNYWxkaXZlcyUyMHJlc29ydCUyMHdhdGVyJTIwdmlsbGF8ZW58MXx8fHwxNzgwMDc1NTQ1fDA&ixlib=rb-4.1.0&q=80&w=1080', description: 'Luxury resorts and crystal waters', tag: 'Bestseller' },
-  { name: 'Sri Lanka', duration: '4N/5D', image: 'https://images.unsplash.com/photo-1585171328560-947fbd92d6f0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxTcmklMjBMYW5rYSUyMHRlYSUyMHBsYW50YXRpb24lMjBsYW5kc2NhcGV8ZW58MXx8fHwxNzgwMDc1NTc1fDA&ixlib=rb-4.1.0&q=80&w=1080', description: 'Tea plantations and ancient ruins', tag: null },
-  { name: 'Mauritius', duration: '3N/4D', image: 'https://images.unsplash.com/photo-1570789210967-2cac24afeb00?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxNYXVyaXRpdXMlMjBiZWFjaCUyMHRyb3BpY2FsfGVufDF8fHx8MTc4MDA3NTU3NXww&ixlib=rb-4.1.0&q=80&w=1080', description: 'Tropical beaches and coral reefs', tag: null },
-  { name: 'Japan', duration: '7N/8D', image: 'https://images.unsplash.com/photo-1565618754154-c8011e5df2a6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxKYXBhbiUyMFRva3lvJTIwTW91bnQlMjBGdWppfGVufDF8fHx8MTc4MDA3NTU1Mnww&ixlib=rb-4.1.0&q=80&w=1080', description: 'Blend of tradition and modernity', tag: 'Premium' },
-  { name: 'Australia', duration: '5N/6D', image: 'https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxBdXN0cmFsaWElMjBTeWRuZXklMjBPcGVyYSUyMEhvdXNlfGVufDF8fHx8MTc4MDA3NTU3Nnww&ixlib=rb-4.1.0&q=80&w=1080', description: 'Iconic landmarks and natural wonders', tag: null },
-  { name: 'China', duration: '4N/5D', image: 'https://images.unsplash.com/photo-1508804185872-d7badad00f7d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxDaGluYSUyMEdyZWF0JTIwV2FsbHxlbnwxfHx8fDE3ODAwNzU1NzZ8MA&ixlib=rb-4.1.0&q=80&w=1080', description: 'Ancient wonders and modern marvels', tag: null },
+  { name: 'Singapore', duration: '4N/5D', image: '/optimized/img_b687b517.webp', description: 'Modern city with stunning architecture', tag: 'Popular' },
+  { name: 'Dubai', duration: '4N/5D', image: '/optimized/img_dfb84508.webp', description: 'Luxury shopping and desert adventures', tag: 'Bestseller' },
+  { name: 'Europe', duration: '11N/12D', image: '/optimized/img_cb73600f.webp', description: 'Explore historic cities and culture', tag: 'Premium' },
+  { name: 'Malaysia', duration: '4N/5D', image: '/optimized/img_d20d11d5.webp', description: 'Tropical paradise and vibrant cities', tag: null },
+  { name: 'Vietnam', duration: '5N/6D', image: '/optimized/img_ea56c3ef.webp', description: 'Rich culture and stunning landscapes', tag: null },
+  { name: 'Bali', duration: '6N/7D', image: '/optimized/img_7b83f761.webp', description: 'Island paradise with beautiful beaches', tag: 'Popular' },
+  { name: 'Thailand', duration: '4N/5D', image: '/optimized/img_94ec7aa4.webp', description: 'Temples, beaches, and delicious food', tag: null },
+  { name: 'New Zealand', duration: '6N/7D', image: '/optimized/img_6a5cccc4.webp', description: 'Breathtaking natural beauty', tag: 'Premium' },
+  { name: 'Nepal', duration: '4N/5D', image: '/optimized/img_2efb9ac3.webp', description: 'Himalayan adventures and spirituality', tag: null },
+  { name: 'Maldives', duration: '3N/4D', image: '/optimized/img_304bcd51.webp', description: 'Luxury resorts and crystal waters', tag: 'Bestseller' },
+  { name: 'Sri Lanka', duration: '4N/5D', image: '/optimized/img_3d0a1fd9.webp', description: 'Tea plantations and ancient ruins', tag: null },
+  { name: 'Mauritius', duration: '3N/4D', image: '/optimized/img_919db699.webp', description: 'Tropical beaches and coral reefs', tag: null },
+  { name: 'Japan', duration: '7N/8D', image: '/optimized/img_cfa566b9.webp', description: 'Blend of tradition and modernity', tag: 'Premium' },
+  { name: 'Australia', duration: '5N/6D', image: '/optimized/img_24c6860c.webp', description: 'Iconic landmarks and natural wonders', tag: null },
+  { name: 'China', duration: '4N/5D', image: '/optimized/img_a8a9f8c5.webp', description: 'Ancient wonders and modern marvels', tag: null },
 ];
 
 const indiaPackages = [
-  { name: 'Kashmir', duration: '3N/4D', image: 'https://images.unsplash.com/photo-1715457573748-8e8a70b2c1be?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxLYXNobWlyJTIwSW5kaWElMjBEYWwlMjBMYWtlfGVufDF8fHx8MTc4MDA3NTU1M3ww&ixlib=rb-4.1.0&q=80&w=1080', description: 'Paradise on Earth with snow-capped peaks', tag: 'Bestseller' },
-  { name: 'Goa', duration: '3N/4D', image: 'https://images.unsplash.com/photo-1652820330085-82a0c2b88d78?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxHb2ElMjBJbmRpYSUyMGJlYWNofGVufDF8fHx8MTc4MDA3NTU1M3ww&ixlib=rb-4.1.0&q=80&w=1080', description: 'Beaches, nightlife, and Portuguese heritage', tag: 'Popular' },
-  { name: 'Kerala', duration: '5N/6D', image: 'https://images.unsplash.com/photo-1506461883276-594a12b11cf3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxLZXJhbGElMjBJbmRpYSUyMGJhY2t3YXRlcnN8ZW58MXx8fHwxNzgwMDc1NTU0fDA&ixlib=rb-4.1.0&q=80&w=1080', description: 'Backwaters, spices, and lush greenery', tag: null },
-  { name: 'Sikkim & Gangtok', duration: '5N/6D', image: 'https://images.unsplash.com/photo-1608942025318-1191eeade556?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxTaWtraW0lMjBJbmRpYSUyMEhpbWFsYXlhfGVufDF8fHx8MTc4MDA3NTU1NXww&ixlib=rb-4.1.0&q=80&w=1080', description: 'Himalayan beauty and Buddhist culture', tag: null },
-  { name: 'Leh Ladakh', duration: '5N/6D', image: 'https://images.unsplash.com/photo-1708949632982-3ce4a7897825?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxMZWglMjBMYWRha2glMjBtb25hc3RlcnklMjBtb3VudGFpbnxlbnwxfHx8fDE3ODAwNzU1NTR8MA&ixlib=rb-4.1.0&q=80&w=1080', description: 'High-altitude desert and monasteries', tag: 'Adventure' },
+  { name: 'Kashmir', duration: '3N/4D', image: '/optimized/img_7052c5e0.webp', description: 'Paradise on Earth with snow-capped peaks', tag: 'Bestseller' },
+  { name: 'Goa', duration: '3N/4D', image: '/optimized/img_6f7b4199.webp', description: 'Beaches, nightlife, and Portuguese heritage', tag: 'Popular' },
+  { name: 'Kerala', duration: '5N/6D', image: '/optimized/img_5b89de0a.webp', description: 'Backwaters, spices, and lush greenery', tag: null },
+  { name: 'Sikkim & Gangtok', duration: '5N/6D', image: '/optimized/img_cb10504a.webp', description: 'Himalayan beauty and Buddhist culture', tag: null },
+  { name: 'Leh Ladakh', duration: '5N/6D', image: '/optimized/img_028471e3.webp', description: 'High-altitude desert and monasteries', tag: 'Adventure' },
 ];
 
 const tagStyles: Record<string, { background: string; color: string }> = {
@@ -156,11 +156,28 @@ function PackageCard({ pkg }: { pkg: Package }) {
 export function Packages() {
   const [activeTab, setActiveTab] = useState<'international' | 'india'>('international');
 
+  useEffect(() => {
+    const checkHash = () => {
+      const hash = window.location.hash;
+      if (hash.includes('packages-india')) {
+        setActiveTab('india');
+      } else if (hash.includes('packages-international')) {
+        setActiveTab('international');
+      }
+    };
+
+    checkHash();
+    window.addEventListener('hashchange', checkHash);
+    return () => window.removeEventListener('hashchange', checkHash);
+  }, []);
+
   const packages = activeTab === 'international' ? internationalPackages : indiaPackages;
 
   return (
-    <section id="packages" className="scroll-mt-24 py-12 md:py-16 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <section id="packages" className="relative scroll-mt-24 py-12 md:py-16 px-4 sm:px-6 lg:px-8">
+      <div id="packages-international" className="absolute top-0 w-full" style={{ marginTop: '-6rem' }} />
+      <div id="packages-india" className="absolute top-0 w-full" style={{ marginTop: '-6rem' }} />
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-3 mb-3">
