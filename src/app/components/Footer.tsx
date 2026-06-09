@@ -138,7 +138,7 @@ export function Footer() {
               {[
                 { icon: Phone, text: '+91 70571 70000', href: 'tel:+917057170000' },
                 { icon: Phone, text: '+91 82229 44440', href: 'tel:+918222944440' },
-                { icon: Mail, text: 'info@rudrakshtravels.com', href: 'mailto:info@rudrakshtravels.com' },
+                { icon: Mail, text: 'rudrakshfly@gmail.com', href: 'mailto:rudrakshfly@gmail.com' },
                 { icon: MapPin, text: '3rd Floor, MG Equity Mall, Sanjay Chowk, Grand Trunk Rd, Netaji Colony, Panipat, Haryana 132103', href: '#' },
               ].map((item, i) => (
                 <a
