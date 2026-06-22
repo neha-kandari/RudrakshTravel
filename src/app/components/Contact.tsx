@@ -2,7 +2,7 @@ import { MapPin, Phone, Mail, MessageCircle, Send } from 'lucide-react';
 
 const contactItems = [
   { icon: Phone, label: 'Phone', value: '+91 98966 85095', href: 'tel:+919896685095', color: '#7F3B2F' },
-  { icon: Mail, label: 'Email', value: 'info@rudrakshtravels.com', href: 'mailto:info@rudrakshtravels.com', color: '#EC9E2C' },
+  { icon: Mail, label: 'Email', value: 'rudrakshfly@gmail.com', href: 'mailto:rudrakshfly@gmail.com', color: '#EC9E2C' },
   { icon: MapPin, label: 'Location', value: '3rd Floor, MG Equity Mall, Sanjay Chowk, Panipat, Haryana 132103', href: '#', color: '#7F3B2F' },
   { icon: MessageCircle, label: 'WhatsApp', value: '+91 98966 85095', href: 'https://wa.me/919896685095', color: '#EC9E2C' },
 ];
